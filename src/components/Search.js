@@ -5,7 +5,7 @@ const Search = () => {
   console.log('I RUN WITH EVERY RENDER');
   useEffect(() => {
     console.log('I RUN AFTER EVERY RENDER NAD AT INITIAL RENDER');
-  });
+  }, [term]);
   return (
     <div>
       <div className="ui form">
