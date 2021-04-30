@@ -4,8 +4,8 @@ const Search = () => {
   const [term, setTerm] = useState('');
   console.log('I RUN WITH EVERY RENDER');
   useEffect(() => {
-    console.log('I ONLY RUN ONCE');
-  }, []);
+    console.log('I RUN AFTER EVERY RENDER NAD AT INITIAL RENDER');
+  });
   return (
     <div>
       <div className="ui form">
