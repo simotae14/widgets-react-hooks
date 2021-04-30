@@ -4,10 +4,9 @@ import axios from 'axios';
 const Search = () => {
   const [term, setTerm] = useState('');
   useEffect(() => {
-    const search = async () => {
+    (async () => {
       await axios.get('dsndfnm');
-    };
-    search();
+    })();
   }, [term]);
   return (
     <div>
