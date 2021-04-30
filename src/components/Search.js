@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Search = () => {
   const [term, setTerm] = useState('');
-  console.log('I RUN WITH EVERY RENDER');
   useEffect(() => {
-    console.log('I RUN AFTER EVERY RENDER NAD AT INITIAL RENDER');
+    const search = async () => {
+      await axios.get('dsndfnm');
+    };
+    search();
   }, [term]);
   return (
     <div>
