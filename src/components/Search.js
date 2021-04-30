@@ -4,10 +4,18 @@ import axios from 'axios';
 const Search = () => {
   const [term, setTerm] = useState('');
   useEffect(() => {
-    axios.get('dsndfnm')
-      .then((response) => {
-        console.log(response.data);
+    const search = async () => {
+      await axios.get('https://en.wikipedia.org/w/api.php', {
+        params: {
+          action: 'query',
+          list: 'search',
+          format: 'json',
+          origin: '*',
+          srsearch: term
+        }
       });
+    };
+    search();
   }, [term]);
   return (
     <div>
