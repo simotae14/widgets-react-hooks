@@ -4,15 +4,23 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
   useEffect(() => {
-    document.body.addEventListener('click', (event) => {
+    const onBodyClick = (event) => {
       // check if the clicked element is inside the ref
       if (ref.current.contains(event.target)) {
         return;
       }
       setOpen(false);
-    },
+    };
     // to add if we use React v17
-    { capture: true });
+    document.body.addEventListener("click", onBodyClick, { capture: true });
+
+    // return the CLEANUP FUNCTION to remove the addEventListener
+    return () => {
+      // remove event listener
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true
+      });
+    };
   }, []);
   const renderedOptions = options.map(option => {
     if (option.value === selected.value) {
