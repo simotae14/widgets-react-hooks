@@ -39,14 +39,19 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    const timeoutId = setTimeout(() => {
-      if (term) {
-        search();
-      }
-    }, 1000);
-    return () => {
-      clearTimeout(timeoutId)
-    };
+    // check if it is the first rendering
+    if (term && !results.length) {
+      search();
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 1000);
+      return () => {
+        clearTimeout(timeoutId)
+      };
+    }
   }, [term]);
   return (
     <div>
