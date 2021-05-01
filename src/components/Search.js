@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Search = () => {
   const [term, setTerm] = useState('programming');
+  const [debouncedTerm, setDebouncedTerm] = useState('programming');
   const [results, setResults] = useState([]);
 
   const renderedResults = results.map(result => {
@@ -27,6 +28,15 @@ const Search = () => {
   });
 
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+    return () => {
+      clearTimeout(timeoutId)
+    };
+  }, [term]);
+
+  useEffect(() => {
     const search = async () => {
       const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
         params: {
@@ -34,25 +44,15 @@ const Search = () => {
           list: 'search',
           format: 'json',
           origin: '*',
-          srsearch: term
+          srsearch: debouncedTerm
         }
       });
       setResults(data.query.search);
     };
-    // check if it is the first rendering
-    if (term && !results.length) {
+    if (debouncedTerm) {
       search();
-    } else {
-      const timeoutId = setTimeout(() => {
-        if (term) {
-          search();
-        }
-      }, 1000);
-      return () => {
-        clearTimeout(timeoutId)
-      };
     }
-  }, [term]);
+  }, [debouncedTerm]);
   return (
     <div>
       <div className="ui form">
