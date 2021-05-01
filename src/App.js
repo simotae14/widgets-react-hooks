@@ -41,6 +41,7 @@ export default () => {
       {/*<Accordion items={items} />*/}
       {/*<Search />*/}
       {/*<Dropdown
+        label="Select a Color"
         options={options}
         selected={selected}
         onSelectedChange={setSelected}
