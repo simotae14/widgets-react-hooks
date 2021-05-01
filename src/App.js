@@ -1,6 +1,7 @@
 import React from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
+import Dropdown from './components/Dropdown';
 
 const items = [
   {
@@ -15,14 +16,30 @@ const items = [
     title: 'How do you use React?',
     content: 'You use React by creating components'
   }
-]
+];
+
+const options = [
+  {
+    label: 'The color Red',
+    value: 'red'
+  },
+  {
+    label: 'The color Green',
+    value: 'green'
+  },
+  {
+    label: 'A Shade of Blue',
+    value: 'blue'
+  }
+];
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
     <div>
       {/*<Accordion items={items} />*/}
-      <Search />
+      {/*<Search />*/}
+      <Dropdown options={options} />
     </div>
   );
 };
