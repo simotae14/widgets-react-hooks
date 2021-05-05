@@ -34,19 +34,44 @@ const options = [
   }
 ];
 
+const showAccordion = () => {
+  if (window.location.pathname === '/') {
+    return <Accordion items={items} />;
+  }
+};
+
+const showList = () => {
+  if (window.location.pathname === '/list') {
+    return <Search />;
+  }
+};
+
+const showDropdown = () => {
+  if (window.location.pathname === '/dropdown') {
+    return <Dropdown />;
+  }
+};
+
+const showTranslate = () => {
+  if (window.location.pathname === '/translate') {
+    return <Translate />;
+  }
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
     <div>
-      {/*<Accordion items={items} />*/}
-      {/*<Search />*/}
+      { showAccordion() }
+      { showList() }
+      { showDropdown() }
+      { showTranslate() }
       {/*<Dropdown
         label="Select a Color"
         options={options}
         selected={selected}
         onSelectedChange={setSelected}
       />*/}
-      <Translate />
     </div>
   );
 };
